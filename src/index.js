@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import GlobalStyles from "styles/global";
 import { Provider } from "react-redux";
 import configureStore from "store";
-import App from "components/app";
+import App from "components/App";
 
 const renderApp = () => {
   const store = configureStore({});
