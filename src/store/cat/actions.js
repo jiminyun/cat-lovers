@@ -12,7 +12,7 @@ export const actionTypes = {
 //action creator
 const action = (type, payload) => ({ type, payload });
 
-//api
+//api - thunk funcs
 const actions = {
   fetchCats: (payload = {}) => {
     return dispatch => {

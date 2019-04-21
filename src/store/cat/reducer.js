@@ -9,7 +9,7 @@ const getInitialState = () => ({
 
 const story = (state = getInitialState(), { type, payload }) => {
   switch (type) {
-    case actionTypes.FETCH_STORIES_REQUEST:
+    case actionTypes.FETCH_CATS_REQUEST:
       return {
         ...state,
         isFetching: true
@@ -17,7 +17,7 @@ const story = (state = getInitialState(), { type, payload }) => {
     case actionTypes.FETCH_CATS_SUCCESS:
       return {
         ...state,
-        cats: [payload.cats],
+        cats: [...payload.cats],
         page: state.page + 1,
         isFetching: false
       };

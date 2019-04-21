@@ -4,15 +4,18 @@ import Grid from "components/Grid";
 import { colorsDark } from "styles/colors";
 
 import { Wrapper, Title } from "./styles";
-
-const Presenter = props => (
+import PropTypes from "prop-types";
+const Presenter = ({ cats }) => (
   <ThemeProvider theme={colorsDark}>
     <div>
       <Wrapper>
-        <Grid />
+        <Grid cats={cats} />
       </Wrapper>
     </div>
   </ThemeProvider>
 );
 
+Presenter.propTypes = {
+  cats: PropTypes.array
+};
 export default Presenter;

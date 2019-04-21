@@ -1,4 +1,4 @@
-import ApiService from "./Api";
+import ApiService from "./api";
 
 const BASE_URL = "https://api.thecatapi.com/v1/images/";
 
@@ -8,16 +8,11 @@ const catLoverApi = {};
 
 const PAGE_LIMIT = 20;
 
-// catLoverApi.getTopStoryIds = () => client.get(`/topstories`);
-// catLoverApi.getStory = id => client.get(`/item/${id}${JSON_QUERY}`);
-// catLoverApi.getStoriesByPage = (ids, page) => {
-//   const { begin, end } = getPageSlice(PAGE_LIMIT, page);
-//   const activeIds = getPageValues({ begin, end, items: ids });
-//   const storyPromises = activeIds.map(id => catLoverApi.getStory(id));
-//   return Promise.all(storyPromises);
-//};
+const API_KEY = "b6f0717f-a05a-40be-9c9d-2efb29393842";
 
 catLoverApi.getCatsByPage = (page = 1) =>
-  client.get(`/search/limit=${PAGE_LIMIT}&page=${page}&order=DESC`);
+  client.get(
+    `search?api_key=${API_KEY}&limit=${PAGE_LIMIT}&page=${page}&order=DESC`
+  );
 
 export default catLoverApi;
