@@ -5,7 +5,8 @@ import Container from "./container";
 const mapStateToProps = state => ({
   cats: state.cat.cats,
   page: state.cat.page,
-  isFetching: state.cat.isFetching
+  isFetching: state.cat.isFetching,
+  hasMoreCats: true
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -17,7 +17,7 @@ const story = (state = getInitialState(), { type, payload }) => {
     case actionTypes.FETCH_CATS_SUCCESS:
       return {
         ...state,
-        cats: [...payload.cats],
+        cats: [...state.cats, ...payload.cats],
         page: state.page + 1,
         isFetching: false
       };

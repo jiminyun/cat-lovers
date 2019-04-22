@@ -1,8 +1,10 @@
 import React from "react";
 import { ThemeProvider } from "styled-components";
+import InfiniteScroll from "react-infinite-scroll-component";
 import Nav from "components/Nav";
 import Grid from "components/Grid";
 import Search from "components/Search";
+import Loader from "components/Loader";
 import { colorsDark } from "styles/colors";
 import { Wrapper } from "./styles";
 import PropTypes from "prop-types";
@@ -10,6 +12,7 @@ import PropTypes from "prop-types";
 const Presenter = props => {
   // console.log("handleInputChange", props.handleInputChange);
   // console.log("searchOption", props.searchOption);
+  console.log(props.cats.length);
   return (
     <ThemeProvider theme={colorsDark}>
       <div>
@@ -19,7 +22,18 @@ const Presenter = props => {
           handleInputChange={props.handleInputChange}
         />
         <Wrapper>
-          <Grid cats={props.cats} />
+          <InfiniteScroll
+            dataLength={props.cats.length}
+            next={props.fetchCats}
+            hasMore={props.hasMoreCats}
+            loader={<Loader />}
+            style={{
+              height: "100%",
+              overflow: "visible"
+            }}
+          >
+            <Grid cats={props.cats} />
+          </InfiniteScroll>
         </Wrapper>
       </div>
     </ThemeProvider>

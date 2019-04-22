@@ -18,7 +18,6 @@ const actions = {
     return dispatch => {
       //const { page, searchOption } = payload;
       console.log("searchOption", searchOption);
-
       dispatch(action(actionTypes.FETCH_CATS_REQUEST, page));
 
       return catLoverApi

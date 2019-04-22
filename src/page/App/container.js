@@ -2,6 +2,10 @@ import React, { Component } from "react";
 import Presenter from "./presenter";
 
 class Container extends Component {
+  static defaultProps = {
+    cats: []
+  };
+
   state = {
     order: "",
     type: "",
@@ -13,11 +17,20 @@ class Container extends Component {
     this.props.fetchCats(1, {});
   }
 
+  fetchCats = () => {
+    const { page, isFetching, fetchCats } = this.props;
+    if (!isFetching) {
+      fetchCats(page);
+    }
+  };
+
   render() {
-    const { cats } = this.props;
+    const { cats, hasMoreCats } = this.props;
     return (
       <Presenter
         cats={cats}
+        hasMoreCats={hasMoreCats}
+        fetchCats={this.fetchCats}
         searchOption={this.state}
         handleInputChange={this._handleInputChange}
       />
