@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import actions from "store/cats/actions";
+import actions from "store/cat/actions";
 import Container from "./container";
 
 const mapStateToProps = state => ({
@@ -9,7 +9,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchCats: () => dispatch(actions.fetchCats())
+  fetchCats: (page, searchOption) =>
+    dispatch(actions.fetchCats(page, searchOption))
 });
 
 export default connect(

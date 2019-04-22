@@ -14,11 +14,12 @@ const action = (type, payload) => ({ type, payload });
 
 //api - thunk funcs
 const actions = {
-  fetchCats: (payload = {}) => {
+  fetchCats: (page = {}, searchOption = {}) => {
     return dispatch => {
-      const { page } = payload;
+      //const { page, searchOption } = payload;
+      console.log("searchOption", searchOption);
 
-      dispatch(action(actionTypes.FETCH_CATS_REQUEST, payload));
+      dispatch(action(actionTypes.FETCH_CATS_REQUEST, page));
 
       return catLoverApi
         .getCatsByPage(page)
