@@ -6,7 +6,10 @@ const NS = "@cat-lover/cats";
 export const actionTypes = {
   FETCH_CATS_REQUEST: `${NS}/FETCH_CATS_REQUEST`,
   FETCH_CATS_SUCCESS: `${NS}/FETCH_CATS_SUCCESS`,
-  FETCH_CATS_FAILURE: `${NS}/FETCH_CATS_FAILURE`
+  FETCH_CATS_FAILURE: `${NS}/FETCH_CATS_FAILURE`,
+
+  FETCH_LIKE_SUCCESS: `${NS}/FETCH_LIKE_SUCCESS`,
+  FETCH_LIKE_FAILURE: `${NS}/FETCH_LIKE_FAILURE`
 };
 
 //action creator
@@ -17,15 +20,25 @@ const actions = {
   fetchCats: (page = {}, searchOption = {}) => {
     return dispatch => {
       //const { page, searchOption } = payload;
-      console.log("searchOption", searchOption);
+      //console.log("searchOption", searchOption);
       dispatch(action(actionTypes.FETCH_CATS_REQUEST, page));
-
-      return catLoverApi
+      catLoverApi
         .getCatsByPage(page)
         .then(cats =>
           dispatch(action(actionTypes.FETCH_CATS_SUCCESS, { cats }))
         )
         .catch(err => dispatch(action(actionTypes.FETCH_CATS_FAILURE, err)));
+    };
+  },
+  favoriteImage: imageId => {
+    return dispatch => {
+      catLoverApi
+        .favoriteImage(imageId)
+        .then(() => catLoverApi.getFavorites())
+        .then(cats =>
+          dispatch(action(actionTypes.FETCH_LIKE_SUCCESS, { cats }))
+        )
+        .catch(err => dispatch(action(actionTypes.FETCH_LIKE_FAILURE, err)));
     };
   }
 };

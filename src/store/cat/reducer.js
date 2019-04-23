@@ -4,7 +4,8 @@ const getInitialState = () => ({
   cats: [],
   page: 0,
   isFetching: false,
-  error: ""
+  error: "",
+  favCats: []
 });
 
 const story = (state = getInitialState(), { type, payload }) => {
@@ -20,6 +21,11 @@ const story = (state = getInitialState(), { type, payload }) => {
         cats: [...state.cats, ...payload.cats],
         page: state.page + 1,
         isFetching: false
+      };
+    case actionTypes.FETCH_LIKE_SUCCESS:
+      return {
+        ...state,
+        favCats: [...payload.cats]
       };
     default:
       return { ...state };

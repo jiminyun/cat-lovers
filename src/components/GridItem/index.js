@@ -1,20 +1,17 @@
-import React from "react";
-import { Item, Card, Image, Content, Title, Source } from "./styles";
+import { connect } from "react-redux";
+import actions from "store/cat/actions";
+import GridItem from "./gridItem";
 
-const GridItem = ({ id, url }) => {
-  return (
-    <Item>
-      <Card>
-        <Image src={url} />
-        {/* <Content>
-          <Title>name</Title>
-          <Source>
-            <div>breeds</div>
-          </Source>
-        </Content> */}
-      </Card>
-    </Item>
-  );
-};
+const mapStateToProps = state => ({
+  layout: state.app.layout,
+  theme: state.app.theme
+});
 
-export default GridItem;
+const mapDispatchToProps = dispatch => ({
+  favoriteImage: imgId => dispatch(actions.favoriteImage(imgId))
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(GridItem);

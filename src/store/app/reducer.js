@@ -7,6 +7,7 @@ const getInitialState = () => ({
 const app = (state = getInitialState(), { type, payload }) => {
   switch (type) {
     case actionTypes.SET_THEME:
+    case actionTypes.SET_LAYOUT:
       return {
         ...state,
         ...payload

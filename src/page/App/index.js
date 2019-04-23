@@ -3,6 +3,8 @@ import actions from "store/cat/actions";
 import Container from "./container";
 
 const mapStateToProps = state => ({
+  layout: state.app.layout,
+  theme: state.app.theme,
   cats: state.cat.cats,
   page: state.cat.page,
   isFetching: state.cat.isFetching,
