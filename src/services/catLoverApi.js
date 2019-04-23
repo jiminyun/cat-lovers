@@ -16,7 +16,7 @@ export const catLoverApi = {
   getFavorites: () => {
     const query_params = {
       limit: PAGE_LIMIT,
-      order: "DESC"
+      order: "desc"
     };
     return client.get(`favourites?api_key=${API_KEY}`, {
       params: query_params

@@ -8,8 +8,12 @@ export const actionTypes = {
   FETCH_CATS_SUCCESS: `${NS}/FETCH_CATS_SUCCESS`,
   FETCH_CATS_FAILURE: `${NS}/FETCH_CATS_FAILURE`,
 
-  FETCH_LIKE_SUCCESS: `${NS}/FETCH_LIKE_SUCCESS`,
-  FETCH_LIKE_FAILURE: `${NS}/FETCH_LIKE_FAILURE`
+  FETCH_FAV_CATS_REQUEST: `${NS}/FETCH_FAV_CATS_REQUEST`,
+  FETCH_FAV_CATS_SUCCESS: `${NS}/FETCH_FAV_CATS_SUCCESS`,
+  FETCH_FAV_CATS_FAILURE: `${NS}/FETCH_FAV_CATS_FAILURE`,
+
+  SEND_LIKE_SUCCESS: `${NS}/FETCH_LIKE_SUCCESS`,
+  SEND_LIKE_FAILURE: `${NS}/FETCH_LIKE_FAILURE`
 };
 
 //action creator
@@ -30,15 +34,26 @@ const actions = {
         .catch(err => dispatch(action(actionTypes.FETCH_CATS_FAILURE, err)));
     };
   },
+  fetchFavCats: (page = {}, searchOption = {}) => {
+    return dispatch => {
+      dispatch(action(actionTypes.FETCH_FAV_CATS_REQUEST, page));
+      catLoverApi
+        .getFavorites(page)
+        .then(favCats =>
+          dispatch(action(actionTypes.FETCH_FAV_CATS_SUCCESS, { favCats }))
+        )
+        .catch(err =>
+          dispatch(action(actionTypes.FETCH_FAV_CATS_FAILURE, err))
+        );
+    };
+  },
   favoriteImage: imageId => {
     return dispatch => {
       catLoverApi
         .favoriteImage(imageId)
         .then(() => catLoverApi.getFavorites())
-        .then(cats =>
-          dispatch(action(actionTypes.FETCH_LIKE_SUCCESS, { cats }))
-        )
-        .catch(err => dispatch(action(actionTypes.FETCH_LIKE_FAILURE, err)));
+        .then(cats => dispatch(action(actionTypes.SEND_LIKE_SUCCESS, { cats })))
+        .catch(err => dispatch(action(actionTypes.SEND_LIKE_FAILURE, err)));
     };
   }
 };

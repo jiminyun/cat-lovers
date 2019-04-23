@@ -8,7 +8,6 @@ class Container extends Component {
   };
   render() {
     const { url, id } = this.props;
-    console.log(id);
     return (
       <Item>
         <Card>

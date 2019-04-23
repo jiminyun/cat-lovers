@@ -11,6 +11,7 @@ const getInitialState = () => ({
 const story = (state = getInitialState(), { type, payload }) => {
   switch (type) {
     case actionTypes.FETCH_CATS_REQUEST:
+    case actionTypes.FETCH_FAV_CATS_REQUEST:
       return {
         ...state,
         isFetching: true
@@ -22,10 +23,12 @@ const story = (state = getInitialState(), { type, payload }) => {
         page: state.page + 1,
         isFetching: false
       };
-    case actionTypes.FETCH_LIKE_SUCCESS:
+    case actionTypes.FETCH_FAV_CATS_SUCCESS:
       return {
         ...state,
-        favCats: [...payload.cats]
+        favCats: [...payload.favCats],
+        page: state.page + 1,
+        isFetching: false
       };
     default:
       return { ...state };

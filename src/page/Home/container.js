@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import Presenter from "./presenter";
-import { themes } from "store/app/utils";
-import { colorsDark, colorsLight } from "styles/colors";
 
 class Container extends Component {
   static defaultProps = {
@@ -17,19 +15,6 @@ class Container extends Component {
 
   componentDidMount() {
     this.props.fetchCats(1, {});
-    this.setBodyBackgroundColor();
-  }
-  componentDidUpdate(prevProps) {
-    if (prevProps.theme !== this.props.theme) {
-      this.setBodyBackgroundColor();
-    }
-  }
-  setBodyBackgroundColor() {
-    if (this.props.theme === themes.light) {
-      document.body.style = `background-color: ${colorsLight.background};`;
-    } else {
-      document.body.style = `background-color: ${colorsDark.background};`;
-    }
   }
 
   fetchCats = () => {
@@ -40,7 +25,7 @@ class Container extends Component {
   };
 
   render() {
-    const { cats, hasMoreCats, theme } = this.props;
+    const { cats, hasMoreCats } = this.props;
     return (
       <Presenter
         cats={cats}
@@ -48,7 +33,6 @@ class Container extends Component {
         fetchCats={this.fetchCats}
         searchOption={this.state}
         handleInputChange={this._handleInputChange}
-        theme={theme}
       />
     );
   }

@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link, withRouter } from "react-router-dom";
 import { layouts, themes } from "store/app/utils";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faMoon, faSun, faList } from "@fortawesome/free-solid-svg-icons";
@@ -29,8 +30,12 @@ const Nav = ({ layout, theme, setLayout, setTheme }) => (
         </NavSection>
         <NavSection>
           <Menus>
-            <Menu>SEARCH</Menu>
-            <Menu>FAVOURITES</Menu>
+            <Link to="/">
+              <Menu>SEARCH</Menu>
+            </Link>
+            <Link to="/fav">
+              <Menu>FAVOURITES</Menu>
+            </Link>
           </Menus>
         </NavSection>
         <NavSection>
