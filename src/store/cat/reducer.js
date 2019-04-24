@@ -5,7 +5,8 @@ const getInitialState = () => ({
   page: 0,
   isFetching: false,
   error: "",
-  favCats: []
+  favCats: [],
+  catListing: []
 });
 
 const story = (state = getInitialState(), { type, payload }) => {

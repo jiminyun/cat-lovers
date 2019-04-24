@@ -4,6 +4,7 @@ import Container from "./container";
 
 const mapStateToProps = state => ({
   cats: state.cat.cats,
+  favCats: state.cat.favCats,
   page: state.cat.page,
   isFetching: state.cat.isFetching,
   hasMoreCats: true
@@ -11,7 +12,9 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   fetchCats: (page, searchOption) =>
-    dispatch(actions.fetchCats(page, searchOption))
+    dispatch(actions.fetchCats(page, searchOption)),
+  fetchFavCats: (page, searchOption) =>
+    dispatch(actions.fetchFavCats(page, searchOption))
 });
 
 export default connect(

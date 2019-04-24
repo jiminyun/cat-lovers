@@ -15,6 +15,7 @@ class Container extends Component {
 
   componentDidMount() {
     this.props.fetchCats(1, {});
+    this.props.fetchFavCats(1, {});
   }
 
   fetchCats = () => {
@@ -23,7 +24,6 @@ class Container extends Component {
       fetchCats(page);
     }
   };
-
   render() {
     const { cats, hasMoreCats } = this.props;
     return (

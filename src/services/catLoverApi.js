@@ -6,19 +6,17 @@ const client = new ApiService({ baseURL: BASE_URL });
 
 const PAGE_LIMIT = 20;
 
-const API_KEY = "b6f0717f-a05a-40be-9c9d-2efb29393842";
+const query_params = {
+  limit: PAGE_LIMIT,
+  order: "desc"
+};
 
 export const catLoverApi = {
-  getCatsByPage: (page = 1) =>
-    client.get(
-      `images/search?api_key=${API_KEY}&limit=${PAGE_LIMIT}&page=${page}&order=DESC`
-    ),
+  getCatsByPage: (page = 1) => {
+    return client.get(`images/search?&`, query_params);
+  },
   getFavorites: () => {
-    const query_params = {
-      limit: PAGE_LIMIT,
-      order: "desc"
-    };
-    return client.get(`favourites?api_key=${API_KEY}`, {
+    return client.get(`favourites?`, {
       params: query_params
     });
   },
@@ -27,7 +25,10 @@ export const catLoverApi = {
       image_id: image_id,
       sub_id: "User-123"
     };
-    return client.post(`favourites?api_key=${API_KEY}`, post_body);
+    return client.post(`favourites`, post_body);
+  },
+  deleteImage: fav_id => {
+    return client.delete(`favourites/${fav_id}`);
   }
 };
 

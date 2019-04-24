@@ -11,7 +11,7 @@ class Grid extends Component {
     return (
       <GridWrapper>
         {this.props.cats.map(cat => (
-          <GridItem key={cat.id} {...cat} {...cat.image} />
+          <GridItem key={cat.id} f_id={cat.id} {...cat} {...cat.image} />
         ))}
       </GridWrapper>
     );

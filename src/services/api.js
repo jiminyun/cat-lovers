@@ -3,9 +3,11 @@ import axios from "axios";
 // Default API will be your root
 const API_ROOT = process.env.URL || "http://localhost:3000/";
 const TIMEOUT = 20000;
+const API_KEY = "b6f0717f-a05a-40be-9c9d-2efb29393842";
 const HEADERS = {
   "Content-Type": "application/json",
-  Accept: "application/json"
+  Accept: "application/json",
+  common: { "x-api-key": API_KEY }
 };
 
 class ApiService {

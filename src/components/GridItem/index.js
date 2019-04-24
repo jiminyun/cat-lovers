@@ -3,12 +3,13 @@ import actions from "store/cat/actions";
 import GridItem from "./gridItem";
 
 const mapStateToProps = state => ({
-  layout: state.app.layout,
-  theme: state.app.theme
+  cats: state.cat.cats,
+  favCats: state.cat.favCats
 });
 
 const mapDispatchToProps = dispatch => ({
-  favoriteImage: imgId => dispatch(actions.favoriteImage(imgId))
+  favoriteImage: imgId => dispatch(actions.favoriteImage(imgId)),
+  deleteImage: imgId => dispatch(actions.deleteImage(imgId))
 });
 
 export default connect(
