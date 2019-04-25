@@ -9,10 +9,10 @@ import PropTypes from "prop-types";
 const Presenter = props => {
   return (
     <>
-      <Search
+      {/* <Search
         searchOption={props.searchOption}
         handleInputChange={props.handleInputChange}
-      />
+      /> */}
       <Wrapper>
         <InfiniteScroll
           dataLength={props.favCats.length}

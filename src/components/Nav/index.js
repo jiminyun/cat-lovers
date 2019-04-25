@@ -4,7 +4,8 @@ import Navigation from "./navi";
 
 const mapStateToProps = state => ({
   layout: state.app.layout,
-  theme: state.app.theme
+  theme: state.app.theme,
+  currentRoute: state.app.currentRoute
 });
 
 const mapDispatchToProps = dispatch => ({

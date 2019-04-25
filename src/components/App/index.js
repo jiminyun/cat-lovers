@@ -1,34 +1,11 @@
-import React, { Component } from "react";
-import Router from "../router";
-import { ThemeProvider } from "styled-components";
-import { colorsDark, colorsLight } from "styles/colors";
-import { themes } from "store/app/utils";
+import { connect } from "react-redux";
+import app from "./app";
 
-class App extends Component {
-  componentDidMount() {
-    this.setBodyBackgroundColor();
-  }
+const mapStateToProps = state => ({
+  theme: state.app.theme
+});
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.theme !== this.props.theme) {
-      this.setBodyBackgroundColor();
-    }
-  }
-
-  setBodyBackgroundColor() {
-    if (this.props.theme === themes.light) {
-      document.body.style = `background-color: ${colorsLight.background};`;
-    } else {
-      document.body.style = `background-color: ${colorsDark.background};`;
-    }
-  }
-  render() {
-    return (
-      <ThemeProvider theme={colorsDark}>
-        <Router />
-      </ThemeProvider>
-    );
-  }
-}
-
-export default App;
+export default connect(
+  mapStateToProps,
+  null
+)(app);

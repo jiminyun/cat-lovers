@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link, withRouter } from "react-router-dom";
+import { routes } from "store/app/utils";
 import { layouts, themes } from "store/app/utils";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faMoon, faSun, faList } from "@fortawesome/free-solid-svg-icons";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   Header,
@@ -14,39 +14,39 @@ import {
   Icon,
   Menus,
   Menu,
+  Route,
   ExternalLink
 } from "./styles";
 
 library.add(faMoon, faSun, faList);
 
-const Nav = ({ layout, theme, setLayout, setTheme }) => (
+const Nav = ({ layout, theme, setLayout, setTheme, currentRoute }) => (
   <div>
     <Header>
       <Content>
         <NavSection>
-          <ExternalLink href="/" target="_blank">
-            <span>❤️ cat Lover</span>
-          </ExternalLink>
-        </NavSection>
-        <NavSection>
           <Menus>
-            <Link to="/">
-              <Menu>SEARCH</Menu>
-            </Link>
-            <Link to="/fav">
-              <Menu>FAVOURITES</Menu>
-            </Link>
+            <Route current={currentRoute === routes.home}>
+              <Link to="/">
+                <Menu>SEARCH</Menu>
+              </Link>
+            </Route>
+            <Route current={currentRoute === routes.favorite}>
+              <Link to="/fav">
+                <Menu>FAVOURITES</Menu>
+              </Link>
+            </Route>
           </Menus>
         </NavSection>
         <NavSection>
-          {layout === layouts.list ? (
-            <Icon onClick={() => setLayout(layouts.grid)}>
-              <FontAwesomeIcon icon="list" />
+          {layout === layouts.grid ? (
+            <Icon>
+              {/* <Icon onClick={() => setLayout(layouts.slide)}> */}
+              {/* <FontAwesomeIcon icon="list" /> */}
+              {/* </Icon> */}
             </Icon>
           ) : (
-            <Icon onClick={() => setLayout(layouts.gallery)}>
-              <FontAwesomeIcon icon="list" />
-            </Icon>
+            <Icon onClick={() => setLayout(layouts.grid)}>slide</Icon>
           )}
           {theme === themes.light ? (
             <Icon onClick={() => setTheme(themes.dark)}>
@@ -71,4 +71,4 @@ Nav.propTypes = {
   setTheme: PropTypes.func.isRequired
 };
 
-export default Nav;
+export default withRouter(Nav);

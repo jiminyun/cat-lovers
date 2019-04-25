@@ -4,7 +4,8 @@ import GridItem from "./gridItem";
 
 const mapStateToProps = state => ({
   cats: state.cat.cats,
-  favCats: state.cat.favCats
+  favCats: state.cat.favCats,
+  currentRoute: state.app.currentRoute
 });
 
 const mapDispatchToProps = dispatch => ({

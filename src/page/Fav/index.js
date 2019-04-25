@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
-import actions from "store/cat/actions";
+import catActions from "store/cat/actions";
+import appActions from "store/app/actions";
 import Container from "./container";
 
 const mapStateToProps = state => ({
@@ -10,7 +11,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   fetchFavCats: (page, searchOption) =>
-    dispatch(actions.fetchFavCats(page, searchOption))
+    dispatch(catActions.fetchFavCats(page, searchOption)),
+  setCurrentRoute: route => dispatch(appActions.setCurrentRoute(route))
 });
 
 export default connect(

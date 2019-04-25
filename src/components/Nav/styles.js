@@ -11,6 +11,7 @@ export const Header = styled.header`
   box-shadow: 0 1px 0 0 black;
   position: fixed;
   top: 0;
+  z-index: 9999;
 `;
 
 export const Content = styled.div`
@@ -38,6 +39,10 @@ export const Menus = styled.ul`
 
 export const Menu = styled.ul`
   margin-right: 20px;
+`;
+
+export const Route = styled.li`
+  border-bottom: 2px solid ${props => (props.current ? "red" : "transparent")};
 `;
 
 export const Icon = styled.div`

@@ -13,7 +13,9 @@ const query_params = {
 
 export const catLoverApi = {
   getCatsByPage: (page = 1) => {
-    return client.get(`images/search?&`, query_params);
+    return client.get(
+      `images/search?limit=${PAGE_LIMIT}&page=${page}&order=DESC`
+    );
   },
   getFavorites: () => {
     return client.get(`favourites?`, {

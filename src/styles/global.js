@@ -1,5 +1,4 @@
 import { createGlobalStyle } from "styled-components";
-import { colorsDark } from "styles/colors";
 
 const GlobalStyles = createGlobalStyle`
     * {
@@ -10,7 +9,6 @@ const GlobalStyles = createGlobalStyle`
       width: 100vw;
       margin: 0;
       padding: 0;
-      background-color : ${colorsDark.background} ;
     }
     ul {
       list-style: none;

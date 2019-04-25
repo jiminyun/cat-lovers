@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Presenter from "./presenter";
+import { routes } from "store/app/utils";
 
 class Container extends Component {
   static defaultProps = {
@@ -14,6 +15,7 @@ class Container extends Component {
   };
 
   componentDidMount() {
+    this.props.setCurrentRoute(routes.favorite);
     this.props.fetchFavCats(1, {});
   }
 
